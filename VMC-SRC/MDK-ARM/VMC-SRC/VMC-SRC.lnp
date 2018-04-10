@@ -1,0 +1,25 @@
+--cpu Cortex-M3
+"vmc-src\startup_stm32f100xb.o"
+"vmc-src\system_stm32f1xx.o"
+"vmc-src\stm32f1xx_hal_flash.o"
+"vmc-src\stm32f1xx_hal_uart.o"
+"vmc-src\stm32f1xx_hal_rcc.o"
+"vmc-src\stm32f1xx_hal_tim_ex.o"
+"vmc-src\stm32f1xx_hal_pwr.o"
+"vmc-src\stm32f1xx_hal.o"
+"vmc-src\stm32f1xx_hal_dma.o"
+"vmc-src\stm32f1xx_hal_tim.o"
+"vmc-src\stm32f1xx_hal_rcc_ex.o"
+"vmc-src\stm32f1xx_hal_cortex.o"
+"vmc-src\stm32f1xx_hal_gpio.o"
+"vmc-src\stm32f1xx_hal_adc_ex.o"
+"vmc-src\stm32f1xx_hal_adc.o"
+"vmc-src\stm32f1xx_hal_gpio_ex.o"
+"vmc-src\stm32f1xx_hal_flash_ex.o"
+"vmc-src\main.o"
+"vmc-src\stm32f1xx_hal_msp.o"
+"vmc-src\stm32f1xx_it.o"
+--library_type=microlib --strict --scatter "VMC-SRC\VMC-SRC.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "VMC-SRC.map" -o VMC-SRC\VMC-SRC.axf

@@ -38,6 +38,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
+#include "C:\Users\TheVeganElectrolance\Documents\Electrolance Company\Projects\04042018-JAAVIN-VMC\VMC-SRC\MDK-ARM\appGPIO.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -136,8 +137,12 @@ int main(void)
   {
 
   /* USER CODE END WHILE */
-		HAL_GPIO_TogglePin(OUT1_GPIO_Port,OUT1_Pin);
-		HAL_Delay(5000);
+		//HAL_GPIO_TogglePin(OUT1_GPIO_Port,OUT1_Pin);
+		HAL_Delay(1000);
+		RELAY8_ON();
+		HAL_Delay(1000);
+		RELAY8_OFF();
+		//HAL_GPIO_WritePin(OUT1_GPIO_Port,OUT1_Pin, GPIO_PIN_SET
   /* USER CODE BEGIN 3 */
 
   }

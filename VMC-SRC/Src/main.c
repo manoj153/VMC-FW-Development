@@ -38,7 +38,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
-#include "C:\Users\TheVeganElectrolance\Documents\Electrolance Company\Projects\04042018-JAAVIN-VMC\VMC-SRC\MDK-ARM\appGPIO.h"
 
 /* USER CODE BEGIN Includes */
 

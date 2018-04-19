@@ -59,7 +59,7 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+extern void (* fparr[8]) ();
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -140,12 +140,17 @@ int main(void)
   /* USER CODE END WHILE */
 		//HAL_GPIO_TogglePin(OUT1_GPIO_Port,OUT1_Pin);
 		HAL_Delay(1000);
-		RELAY8_ON();
+		//RELAY8_ON();
 		HAL_Delay(1000);
-		RELAY8_OFF();
+		//RELAY8_OFF();
 		//HAL_GPIO_WritePin(OUT1_GPIO_Port,OUT1_Pin, GPIO_PIN_SET
   /* USER CODE BEGIN 3 */
 
+			for(uint8_t x =0; x<8;x++)
+      {
+				(*fparr[x])();
+				HAL_Delay(500);
+      }
   }
   /* USER CODE END 3 */
 

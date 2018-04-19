@@ -146,7 +146,7 @@ int main(void)
 		//HAL_GPIO_WritePin(OUT1_GPIO_Port,OUT1_Pin, GPIO_PIN_SET
   /* USER CODE BEGIN 3 */
 
-			for(uint8_t x =0; x<8;x++)
+			for(uint8_t x =0; x<16;x++)
       {
 				(*fparr[x])();
 				HAL_Delay(500);

@@ -5,7 +5,7 @@ void func(void);
 uint32_t array[10] ;
 
 
-void (* fparr[8]) () = {RELAY1_ON,RELAY2_ON,RELAY3_ON,RELAY4_ON,RELAY5_ON,RELAY6_ON,RELAY7_ON,RELAY8_ON};
+void (* fparr[16]) () = {RELAY1_ON,RELAY2_ON,RELAY3_ON,RELAY4_ON,RELAY5_ON,RELAY6_ON,RELAY7_ON,RELAY8_ON,RELAY1_OFF,RELAY2_OFF,RELAY3_OFF,RELAY4_OFF,RELAY5_OFF,RELAY6_OFF,RELAY7_OFF,RELAY8_OFF};
 //typedef void* (*IntFunc)(GPIO_TypeDef , GPIO_TypeDef , GPIO_TypeDef );
 
 //IntFunc fparr[5] = { RELAY1ON, func, func, func, func };
@@ -59,5 +59,44 @@ void RELAY8_ON(void)
 	HAL_GPIO_WritePin(OUT8_GPIO_Port, OUT8_Pin, GPIO_PIN_SET);
 }
 
+void RELAY1_OFF(void)
+{
+	HAL_GPIO_WritePin(OUT1_GPIO_Port, OUT1_Pin, GPIO_PIN_RESET);
+}
+
+void RELAY2_OFF(void)
+{
+	HAL_GPIO_WritePin(OUT2_GPIO_Port, OUT2_Pin, GPIO_PIN_RESET);
+}
+
+void RELAY3_OFF(void)
+{
+	HAL_GPIO_WritePin(OUT3_GPIO_Port, OUT3_Pin, GPIO_PIN_RESET);
+}
+
+void RELAY4_OFF(void)
+{
+	HAL_GPIO_WritePin(OUT4_GPIO_Port, OUT4_Pin, GPIO_PIN_RESET);
+}
+
+void RELAY5_OFF(void)
+{
+	HAL_GPIO_WritePin(OUT5_GPIO_Port, OUT5_Pin, GPIO_PIN_RESET);
+}
+
+void RELAY6_OFF(void)
+{
+	HAL_GPIO_WritePin(OUT6_GPIO_Port, OUT6_Pin, GPIO_PIN_RESET);
+}
+
+void RELAY7_OFF(void)
+{
+	HAL_GPIO_WritePin(OUT7_GPIO_Port, OUT7_Pin, GPIO_PIN_RESET);
+}
+
+void RELAY8_OFF(void)
+{
+	HAL_GPIO_WritePin(OUT8_GPIO_Port, OUT8_Pin, GPIO_PIN_RESET);
+}
 
 

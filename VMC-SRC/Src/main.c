@@ -38,11 +38,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
-#include "C:\Users\TheVeganElectrolance\Documents\Electrolance Company\Projects\04042018-JAAVIN-VMC\VMC-SRC\MDK-ARM\appGPIO.h"
+
  
 
 /* USER CODE BEGIN Includes */
-
+#include "C:\Users\TheVeganElectrolance\Documents\Electrolance Company\Projects\04042018-JAAVIN-VMC\VMC-SRC\MDK-ARM\appGPIO.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -155,13 +155,14 @@ int main(void)
 			trigmanualSW();
 		}
 
-  /* USER CODE END WHILE */
+  
 		//HAL_GPIO_TogglePin(OUT1_GPIO_Port,OUT1_Pin);
 		//HAL_Delay(1000);
 		//RELAY8_ON();
 		HAL_Delay(1000);
 		//RELAY8_OFF();
 		//HAL_GPIO_WritePin(OUT1_GPIO_Port,OUT1_Pin, GPIO_PIN_SET
+	/* USER CODE END WHILE */
   /* USER CODE BEGIN 3 */
 
 //			for(uint8_t x =0; x<16;x++)

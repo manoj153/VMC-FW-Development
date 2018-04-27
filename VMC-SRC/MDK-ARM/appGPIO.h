@@ -22,6 +22,9 @@ void RELAY6_OFF(void);
 void RELAY7_OFF(void);
 void RELAY8_OFF(void);
 
+void readmanualSW(void);
+void trigmanualSW(void);
+
 
 //#define RELAY1ON const HAL_GPIO_WritePin(OUT1_GPIO_Port, OUT1_Pin, GPIO_PIN_SET)
 

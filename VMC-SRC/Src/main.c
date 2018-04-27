@@ -60,6 +60,10 @@ UART_HandleTypeDef huart1;
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 extern void (* fparr[8]) ();
+uint32_t  manualSWV =0xFFFFFFFF;
+
+//extern void readmanualSW();
+//extern void trigmanualSW();
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -129,28 +133,42 @@ int main(void)
   MX_TIM16_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
+	_Bool Auto = 0x00;
+	_Bool autoButton;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		autoButton = HAL_GPIO_ReadPin(AUTO_GPIO_Port,AUTO_Pin);
+		if(HAL_GPIO_ReadPin(AUTO_GPIO_Port,AUTO_Pin))
+		{
+			Auto = 0x01;
+		}
+		else
+		{
+			Auto = 0x00;
+			//Read all the switch
+			readmanualSW();
+			//Trigger Function.
+			trigmanualSW();
+		}
 
   /* USER CODE END WHILE */
 		//HAL_GPIO_TogglePin(OUT1_GPIO_Port,OUT1_Pin);
-		HAL_Delay(1000);
+		//HAL_Delay(1000);
 		//RELAY8_ON();
 		HAL_Delay(1000);
 		//RELAY8_OFF();
 		//HAL_GPIO_WritePin(OUT1_GPIO_Port,OUT1_Pin, GPIO_PIN_SET
   /* USER CODE BEGIN 3 */
 
-			for(uint8_t x =0; x<16;x++)
-      {
-				(*fparr[x])();
-				HAL_Delay(500);
-      }
+//			for(uint8_t x =0; x<16;x++)
+//      {
+//				(*fparr[x])();
+//				HAL_Delay(500);
+//      }
   }
   /* USER CODE END 3 */
 

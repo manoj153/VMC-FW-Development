@@ -1,6 +1,14 @@
 #include "appGPIO.h"
 #include "stm32f1xx_hal.h"
+#include "stm32f100xb.h"
 extern uint32_t manualSWV;
+extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim4;
+extern TIM_HandleTypeDef htim15;
+extern TIM_HandleTypeDef htim16;
+extern TIM_OC_InitTypeDef sConfigOC;
 void readmanualSW()
 {
 	//manualSWV = 0xFFFFFFFF;
@@ -121,6 +129,124 @@ void trigmanualSW()
 			RELAY1_OFF();
 		}
 		
+		if((manualSWV >> 19) & 1) //SW F1 MTR 
+		{
+			//Set 90% DutyCycle Should be 10% in code for clockwise cos there is inversion smitt on circuit.
+			//on the PWM
+			//On the SD Line High
+			TIM1->CCR1 = 5; //Chip sees 90% 
+			HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD1_GPIO_Port, SD1_Pin, GPIO_PIN_RESET); // chip see HIGH 
+			
+			
+		}
+		else
+		{
+			
+			HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD1_GPIO_Port, SD1_Pin, GPIO_PIN_SET); // CHIP See low 
+			//off the PWM
+			//Off the SD Line by LOW
+		}
 		
+		if((manualSWV >> 18) & 1) //SW F2 MTR 
+		{
+			//Set 90% DutyCycle Should be 10% in code for clockwise cos there is inversion smitt on circuit.
+			//on the PWM
+			//On the SD Line High
+			TIM2->CCR1 = 5; //Chip sees 90% 
+			HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD2_GPIO_Port, SD2_Pin, GPIO_PIN_RESET); // chip see HIGH 
+			
+			
+		}
+		else
+		{
+			
+			HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD2_GPIO_Port, SD2_Pin, GPIO_PIN_SET); // CHIP See low 
+			//off the PWM
+			//Off the SD Line by LOW
+		}
+
+		if((manualSWV >> 17) & 1) //SW F3 MTR 
+		{
+			//Set 90% DutyCycle Should be 10% in code for clockwise cos there is inversion smitt on circuit.
+			//on the PWM
+			//On the SD Line High
+			TIM3->CCR1 = 5; //Chip sees 90% 
+			HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD3_GPIO_Port, SD3_Pin, GPIO_PIN_RESET); // chip see HIGH 
+			
+			
+		}
+		else
+		{
+			
+			HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD3_GPIO_Port, SD3_Pin, GPIO_PIN_SET); // CHIP See low 
+			//off the PWM
+			//Off the SD Line by LOW
+		}		
+		
+		if((manualSWV >> 16) & 1) //SW F4 MTR 
+		{
+			//Set 90% DutyCycle Should be 10% in code for clockwise cos there is inversion smitt on circuit.
+			//on the PWM
+			//On the SD Line High
+			TIM4->CCR1 = 5; //Chip sees 90% 
+			HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD4_GPIO_Port, SD4_Pin, GPIO_PIN_RESET); // chip see HIGH 
+			
+			
+		}
+		else
+		{
+			
+			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD4_GPIO_Port, SD4_Pin, GPIO_PIN_SET); // CHIP See low 
+			//off the PWM
+			//Off the SD Line by LOW
+		}		
+
+		if((manualSWV >> 15) & 1) //SW F5 MTR 
+		{
+			//Set 90% DutyCycle Should be 10% in code for clockwise cos there is inversion smitt on circuit.
+			//on the PWM
+			//On the SD Line High
+			TIM15->CCR1 = 5; //Chip sees 90% 
+			HAL_TIM_PWM_Start(&htim15, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD5_GPIO_Port, SD5_Pin, GPIO_PIN_RESET); // chip see HIGH 
+			
+			
+		}
+		else
+		{
+			
+			HAL_TIM_PWM_Stop(&htim15, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD5_GPIO_Port, SD5_Pin, GPIO_PIN_SET); // CHIP See low 
+			//off the PWM
+			//Off the SD Line by LOW
+		}		
+
+		if((manualSWV >> 14) & 1) //SW F6 MTR 
+		{
+			//Set 90% DutyCycle Should be 10% in code for clockwise cos there is inversion smitt on circuit.
+			//on the PWM
+			//On the SD Line High
+			TIM16->CCR1 = 5; //Chip sees 90% 
+			HAL_TIM_PWM_Start(&htim16, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD6_GPIO_Port, SD6_Pin, GPIO_PIN_RESET); // chip see HIGH 
+			
+			
+		}
+		else
+		{
+			
+			HAL_TIM_PWM_Stop(&htim16, TIM_CHANNEL_1);
+			HAL_GPIO_WritePin(SD6_GPIO_Port, SD6_Pin, GPIO_PIN_SET); // CHIP See low 
+			//off the PWM
+			//Off the SD Line by LOW
+		}						
 		
 }

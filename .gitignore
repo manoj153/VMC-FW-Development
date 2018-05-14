@@ -59,3 +59,11 @@ dkms.conf
 *.dep
 
 *.TheVeganElectrolance
+
+VMC-SRC/MDK-ARM/VMC-SRC/VMC-SRC\.hex
+
+*.uvprojx
+
+*.uvoptx
+
+*.iex

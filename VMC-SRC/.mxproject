@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=C:/Users/TheVeganElectrolance/Desktop/VMC-SRC/Inc
+HeaderPath=C:/Users/TheVeganElectrolance/Documents/Electrolance Company/Projects/04042018-JAAVIN-VMC/VMC-SRC/Inc
 HeaderFiles=stm32f1xx_it.h;stm32f1xx_hal_conf.h;main.h;
-SourcePath=C:/Users/TheVeganElectrolance/Desktop/VMC-SRC/Src
+SourcePath=C:/Users/TheVeganElectrolance/Documents/Electrolance Company/Projects/04042018-JAAVIN-VMC/VMC-SRC/Src
 SourceFiles=stm32f1xx_it.c;stm32f1xx_hal_msp.c;main.c;
 
 [PreviousLibFiles]

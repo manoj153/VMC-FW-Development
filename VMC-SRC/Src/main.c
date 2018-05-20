@@ -191,6 +191,58 @@ int main(void)
 					{
 						RELAY1_ON();
 					}
+					
+					if((buffer[4] + buffer[5]) == (uint8_t) 0x02) // Relay 2 OFF
+						RELAY2_OFF();
+					else if ((buffer[4] + buffer[5]) == (uint8_t)0x03)
+					{
+						RELAY2_ON();
+					}
+
+					if((buffer[4] + buffer[5]) == (uint8_t) 0x03) // Relay 3 OFF
+						RELAY3_OFF();
+					else if ((buffer[4] + buffer[5]) == (uint8_t)0x04)
+					{
+						RELAY3_ON();
+					}
+					
+					if((buffer[4] + buffer[5]) == (uint8_t) 0x04) // Relay 4 OFF
+						RELAY4_OFF();
+					else if ((buffer[4] + buffer[5]) == (uint8_t)0x05)
+					{
+						RELAY4_ON();
+					}
+
+					if((buffer[4] + buffer[5]) == (uint8_t) 0x05) // Relay 5 OFF
+						RELAY5_OFF();
+					else if ((buffer[4] + buffer[5]) == (uint8_t)0x06)
+					{
+						RELAY5_ON();
+					}
+					
+					if((buffer[4] + buffer[5]) == (uint8_t) 0x06) // Relay 6 OFF
+						RELAY6_OFF();
+					else if ((buffer[4] + buffer[5]) == (uint8_t)0x07)
+					{
+						RELAY6_ON();
+					}
+					
+					
+					if((buffer[4] + buffer[5]) == (uint8_t) 0x07) // Relay 7 OFF
+						RELAY7_OFF();
+					else if ((buffer[4] + buffer[5]) == (uint8_t)0x08)
+					{
+						RELAY7_ON();
+					}
+					
+					if((buffer[4] + buffer[5]) == (uint8_t) 0x08) // Relay 8 OFF
+						RELAY8_OFF();
+					else if ((buffer[4] + buffer[5]) == (uint8_t)0x09)
+					{
+						RELAY8_ON();
+					}
+					
+				
 					HAL_UART_Receive_IT(&huart1,&data, 1);
       		break;
       	//case:

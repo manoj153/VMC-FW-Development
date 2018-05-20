@@ -59,7 +59,11 @@ UART_HandleTypeDef huart1;
 /* Private variables ---------------------------------------------------------*/
 extern void (* fparr[8]) ();
 uint32_t  manualSWV =0xFFFFFFFF;
-
+uint8_t buffer[30];
+uint8_t data;
+uint8_t indexA = 0;
+uint8_t final_pos = 0;
+_Bool processData = 0;
 //extern void readmanualSW();
 //extern void trigmanualSW();
 /* USER CODE END PV */
@@ -101,7 +105,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	indexA = 0x00;
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -133,12 +137,15 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	_Bool Auto = 0x00;
 	_Bool autoButton;
+	__HAL_UART_ENABLE_IT(&huart1, UART_IT_RXNE);
+	HAL_UART_Receive_IT(&huart1,&data, 1);// enable UART interupt 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		
 		autoButton = HAL_GPIO_ReadPin(AUTO_GPIO_Port,AUTO_Pin);
 		if(HAL_GPIO_ReadPin(AUTO_GPIO_Port,AUTO_Pin))
 		{
@@ -169,7 +176,33 @@ int main(void)
 //				(*fparr[x])();
 //				HAL_Delay(500);
 //      }
-  }
+  
+		if(processData)
+		{
+			// DO all the check. 
+			processData = 0; 
+			//on the interupt receive
+			switch (buffer[3])
+      {
+      	case 0x23: //relay turn 
+					if((buffer[4] + buffer[5]) == (uint8_t) 0x01) // Relay 1 OFF
+						RELAY1_OFF();
+					else if ((buffer[4] + buffer[5]) == (uint8_t)0x02)
+					{
+						RELAY1_ON();
+					}
+					HAL_UART_Receive_IT(&huart1,&data, 1);
+      		break;
+      	//case:
+      		//break;
+      	default:
+					//HAL_UART_Receive_IT(&huart1,&data, 1);
+      		break;
+				
+      }
+		}
+	
+	}
   /* USER CODE END 3 */
 
 }
@@ -673,7 +706,33 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	
+		if ((indexA-1) == 0 && data != 0xAA) //if first data not AA RESET it 
+			{
+			indexA = 0;
+			}
+		if(data != 0xDD)
+		{
+			buffer[indexA-1] = data; // keep input until DD 
+			//Stop UART Transmission. 
+			//Process Flag on. 
+		}
+		else if (data == 0xDD)
+		{
+				final_pos = indexA -1;
+				buffer[indexA-1] = data; 
+			//process the data.
+			//of interupt UART,
+				processData =1;
+				indexA =0;
+		}
+		if(!(processData))
+		{
+		HAL_UART_Receive_IT(&huart1,&data, 1);
+		}
+}
 /* USER CODE END 4 */
 
 /**

@@ -36,7 +36,8 @@
 #include "stm32f1xx_it.h"
 
 /* USER CODE BEGIN 0 */
-
+extern uint8_t data;
+extern uint8_t indexA;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -200,9 +201,11 @@ void USART1_IRQHandler(void)
   /* USER CODE BEGIN USART1_IRQn 0 */
 
   /* USER CODE END USART1_IRQn 0 */
+	indexA++;
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
-
+	
+	//HAL_UART_Receive_IT(&huart1,&data, 1);// enable UART interupt 
   /* USER CODE END USART1_IRQn 1 */
 }
 
